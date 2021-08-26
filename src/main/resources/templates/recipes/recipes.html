@@ -12,11 +12,45 @@
             <tr>
                 <td>Id</td>
                 <td>Description</td>
+                <td>Preparation time</td>
+                <td>Cook time</td>
+                <td>Servings</td>
+                <td>Difficulty</td>
+                <td>Categories</td>
+                <td>Ingredients</td>
                 <td>Directions</td>
+                <td>Notes</td>
+                <td>Source</td>
+                <td>Url</td>
             </tr>
         </thead>
         <tr th:each="recipe : ${recipes}">
             <td th:text="${recipe.id}">1</td>
+            <td th:text="${recipe.description}">Description</td>
+            <td th:text="${recipe.prepTime}">10</td>
+            <td th:text="${recipe.cookTime}">5</td>
+            <td th:text="${recipe.servings}">3</td>
+            <td th:text="${recipe.difficulty}">Easy</td>
+
+            <td>
+                <div th:each="cat : ${recipe.categories}">
+                    <p th:text="${cat.description}">Categories</p>
+                </div>
+            </td>
+
+            <td>
+                <div th:each="ing : ${recipe.ingredients}">
+                    <p th:text="${ing.amount + ' ' + ing.uom.description + ' ' + ing.description}">Ingredients</p>
+                </div>
+            </td>
+
+            <td th:text="${recipe.directions}">Directions</td>
+
+            <td th:text="${recipe.notes.notes}">Notes</td>
+
+            <td th:text="${recipe.source}">Simply recipes</td>
+
+            <td th:text="${recipe.url}">www.something.com</td>
         </tr>
     </table>
 </body>
