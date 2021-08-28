@@ -66,16 +66,16 @@ public class DataLoader implements CommandLineRunner {
             each = eachOptional.orElse(null);
             some = someOptional.orElse(null);
 
-            Ingredient avocados = new Ingredient("ripe avocados", new BigDecimal(2), each, guackRecipe);
-            Ingredient salt = new Ingredient("salt", new BigDecimal("0.25"), teaspoon, guackRecipe);
-            Ingredient freshLimeJuice = new Ingredient("fresh lime or lemon juice", new BigDecimal(1), tablespoon, guackRecipe);
-            Ingredient mincedRedOnion = new Ingredient("minced red onion or thinly sliced green onion", new BigDecimal(3), tablespoon, guackRecipe);
-            Ingredient serranoChilis = new Ingredient("serrano (or jalapeño) chilis, stems and seeds removed, minced", new BigDecimal(1), each, guackRecipe);
-            Ingredient cilantro = new Ingredient("cilantro (leaves and tender stems), finely chopped", new BigDecimal(2), tablespoon, guackRecipe);
-            Ingredient pepper = new Ingredient("freshly ground black pepper", new BigDecimal(1), pinch, guackRecipe);
-            Ingredient tomato = new Ingredient("ripe tomato, chopped (optional)", new BigDecimal("0.5"), each, guackRecipe);
-            Ingredient radish = new Ingredient("Red radish or jicama slices for garnish (optional)", new BigDecimal("0"), some, guackRecipe);
-            Ingredient tortilla = new Ingredient("Tortilla chips, to serve", new BigDecimal("0"), some, guackRecipe);
+            Ingredient avocados = new Ingredient("ripe avocados", new BigDecimal(2), each);
+            Ingredient salt = new Ingredient("salt", new BigDecimal("0.25"), teaspoon);
+            Ingredient freshLimeJuice = new Ingredient("fresh lime or lemon juice", new BigDecimal(1), tablespoon);
+            Ingredient mincedRedOnion = new Ingredient("minced red onion or thinly sliced green onion", new BigDecimal(3), tablespoon);
+            Ingredient serranoChilis = new Ingredient("serrano (or jalapeño) chilis, stems and seeds removed, minced", new BigDecimal(1), each);
+            Ingredient cilantro = new Ingredient("cilantro (leaves and tender stems), finely chopped", new BigDecimal(2), tablespoon);
+            Ingredient pepper = new Ingredient("freshly ground black pepper", new BigDecimal(1), pinch);
+            Ingredient tomato = new Ingredient("ripe tomato, chopped (optional)", new BigDecimal("0.5"), each);
+            Ingredient radish = new Ingredient("Red radish or jicama slices for garnish (optional)", new BigDecimal("0"), some);
+            Ingredient tortilla = new Ingredient("Tortilla chips, to serve", new BigDecimal("0"), some);
 
 
             american.getRecipes().add(guackRecipe);
@@ -84,16 +84,16 @@ public class DataLoader implements CommandLineRunner {
             mexican.getRecipes().add(guackRecipe);
             guackRecipe.getCategories().add(mexican);
 
-            guackRecipe.getIngredients().add(avocados);
-            guackRecipe.getIngredients().add(salt);
-            guackRecipe.getIngredients().add(freshLimeJuice);
-            guackRecipe.getIngredients().add(mincedRedOnion);
-            guackRecipe.getIngredients().add(serranoChilis);
-            guackRecipe.getIngredients().add(cilantro);
-            guackRecipe.getIngredients().add(pepper);
-            guackRecipe.getIngredients().add(tomato);
-            guackRecipe.getIngredients().add(radish);
-            guackRecipe.getIngredients().add(tortilla);
+            guackRecipe.addIngredient(avocados);
+            guackRecipe.addIngredient(salt);
+            guackRecipe.addIngredient(freshLimeJuice);
+            guackRecipe.addIngredient(mincedRedOnion);
+            guackRecipe.addIngredient(serranoChilis);
+            guackRecipe.addIngredient(cilantro);
+            guackRecipe.addIngredient(pepper);
+            guackRecipe.addIngredient(tomato);
+            guackRecipe.addIngredient(radish);
+            guackRecipe.addIngredient(tortilla);
 
             guackRecipe.setDescription("Perfect guacamole");
 
@@ -127,7 +127,7 @@ public class DataLoader implements CommandLineRunner {
             guackRecipe.setDifficulty(Difficulty.EASY);
             guackRecipe.setImage(new Byte[0]);
             Notes guackNotes = new Notes();
-            guackNotes.setRecipe(guackRecipe);
+            //guackNotes.setRecipe(guackRecipe);
             guackNotes.setNotes("How to Pick Perfectly Ripe Avocados\n" +
                     "The trick to making perfect guacamole is using avocados that are just the right amount of ripeness. " +
                     "Not ripe enough and the avocado will be hard and flavorless. Too ripe and the taste will be off.\n" +
@@ -209,27 +209,27 @@ public class DataLoader implements CommandLineRunner {
             tacosRecipe.getCategories().add(tacos);
             tacosRecipe.getCategories().add(american);
 
-            Ingredient anchoChiliPowder = new Ingredient("ancho chili powder", new BigDecimal(2), each, tacosRecipe);
-            Ingredient driedOregano = new Ingredient("dried oregano", new BigDecimal(1), teaspoon, tacosRecipe);
-            Ingredient driedCumin = new Ingredient("dried cumin", new BigDecimal(1), teaspoon, tacosRecipe);
-            Ingredient sugar = new Ingredient("sugar", new BigDecimal(1), teaspoon, tacosRecipe);
-            salt = new Ingredient("salt", new BigDecimal("0.5"), teaspoon, tacosRecipe);
-            Ingredient garlic = new Ingredient("clove garlic, finely choped", new BigDecimal(1), each, tacosRecipe);
-            Ingredient orangeZest = new Ingredient("finely grated orange zest", new BigDecimal(1), tablespoon, tacosRecipe);
-            Ingredient orangeJuice = new Ingredient("fresh-squeezed orange juice", new BigDecimal(3), tablespoon, tacosRecipe);
-            Ingredient oliveOil = new Ingredient("olive oil", new BigDecimal(2), tablespoon, tacosRecipe);
-            Ingredient chickenThighs = new Ingredient("skinless, boneless chicken thighs (1 1/4 pounds)", new BigDecimal(5), each, tacosRecipe);
+            Ingredient anchoChiliPowder = new Ingredient("ancho chili powder", new BigDecimal(2), each);
+            Ingredient driedOregano = new Ingredient("dried oregano", new BigDecimal(1), teaspoon);
+            Ingredient driedCumin = new Ingredient("dried cumin", new BigDecimal(1), teaspoon);
+            Ingredient sugar = new Ingredient("sugar", new BigDecimal(1), teaspoon);
+            salt = new Ingredient("salt", new BigDecimal("0.5"), teaspoon);
+            Ingredient garlic = new Ingredient("clove garlic, finely choped", new BigDecimal(1), each);
+            Ingredient orangeZest = new Ingredient("finely grated orange zest", new BigDecimal(1), tablespoon);
+            Ingredient orangeJuice = new Ingredient("fresh-squeezed orange juice", new BigDecimal(3), tablespoon);
+            Ingredient oliveOil = new Ingredient("olive oil", new BigDecimal(2), tablespoon);
+            Ingredient chickenThighs = new Ingredient("skinless, boneless chicken thighs (1 1/4 pounds)", new BigDecimal(5), each);
 
-            tacosRecipe.getIngredients().add(anchoChiliPowder);
-            tacosRecipe.getIngredients().add(driedOregano);
-            tacosRecipe.getIngredients().add(driedCumin);
-            tacosRecipe.getIngredients().add(sugar);
-            tacosRecipe.getIngredients().add(salt);
-            tacosRecipe.getIngredients().add(garlic);
-            tacosRecipe.getIngredients().add(orangeZest);
-            tacosRecipe.getIngredients().add(orangeJuice);
-            tacosRecipe.getIngredients().add(oliveOil);
-            tacosRecipe.getIngredients().add(chickenThighs);
+            tacosRecipe.addIngredient(anchoChiliPowder);
+            tacosRecipe.addIngredient(driedOregano);
+            tacosRecipe.addIngredient(driedCumin);
+            tacosRecipe.addIngredient(sugar);
+            tacosRecipe.addIngredient(salt);
+            tacosRecipe.addIngredient(garlic);
+            tacosRecipe.addIngredient(orangeZest);
+            tacosRecipe.addIngredient(orangeJuice);
+            tacosRecipe.addIngredient(oliveOil);
+            tacosRecipe.addIngredient(chickenThighs);
 
             tacosRecipe.setDescription("Spicy grilled chicken tacos");
 
@@ -261,8 +261,8 @@ public class DataLoader implements CommandLineRunner {
             tacosRecipe.setDifficulty(Difficulty.MODERATE);
             tacosRecipe.setImage(new Byte[0]);
             Notes tacosNotes = new Notes();
-            tacosNotes.setRecipe(tacosRecipe);
-            guackNotes.setNotes("We have a family motto and it is this: Everything goes better in a tortilla.\n" +
+            //tacosNotes.setRecipe(tacosRecipe);
+            tacosNotes.setNotes("We have a family motto and it is this: Everything goes better in a tortilla.\n" +
                     "\n" +
                     "Any and every kind of leftover can go inside a warm tortilla, usually with a healthy dose of " +
                     "pickled jalapenos. I can always sniff out a late-night snacker when the aroma of tortillas heating " +
