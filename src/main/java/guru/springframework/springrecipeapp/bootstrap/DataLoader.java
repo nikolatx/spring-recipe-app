@@ -5,12 +5,14 @@ import guru.springframework.springrecipeapp.repositories.CategoryRepository;
 import guru.springframework.springrecipeapp.repositories.IngredientRepository;
 import guru.springframework.springrecipeapp.repositories.RecipeRepository;
 import guru.springframework.springrecipeapp.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class DataLoader implements CommandLineRunner {
 
@@ -29,6 +31,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        log.debug("Loading bootstrap data");
         loadData();
     }
 

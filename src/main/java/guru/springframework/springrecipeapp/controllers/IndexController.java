@@ -3,6 +3,7 @@ package guru.springframework.springrecipeapp.controllers;
 import guru.springframework.springrecipeapp.domain.Recipe;
 import guru.springframework.springrecipeapp.repositories.CategoryRepository;
 import guru.springframework.springrecipeapp.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.HashSet;
 import java.util.Set;
 
+@Slf4j
 @Controller
 public class IndexController {
 
@@ -29,6 +31,7 @@ public class IndexController {
         System.out.println("cat id is: " + categoryOptional.get().getId());
         System.out.println("uom id is:" + unitOfMeasureOptional.get().getId());
         */
+        log.debug("Getting index page");
         return "index";
     }
 
