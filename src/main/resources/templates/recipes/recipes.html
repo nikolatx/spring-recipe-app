@@ -3,55 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>List of recipes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h2>List of recipes</h2>
 
-    <table>
-        <thead>
-            <tr>
-                <td>Id</td>
-                <td>Description</td>
-                <td>Preparation time</td>
-                <td>Cook time</td>
-                <td>Servings</td>
-                <td>Difficulty</td>
-                <td>Categories</td>
-                <td>Ingredients</td>
-                <td>Directions</td>
-                <td>Notes</td>
-                <td>Source</td>
-                <td>Url</td>
-            </tr>
-        </thead>
-        <tr th:each="recipe : ${recipes}">
-            <td th:text="${recipe.id}">1</td>
-            <td th:text="${recipe.description}">Description</td>
-            <td th:text="${recipe.prepTime}">10</td>
-            <td th:text="${recipe.cookTime}">5</td>
-            <td th:text="${recipe.servings}">3</td>
-            <td th:text="${recipe.difficulty}">Easy</td>
 
-            <td>
-                <div th:each="cat : ${recipe.categories}">
-                    <p th:text="${cat.description}">Categories</p>
+    <div class="container-fluid" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card mb-6">
+                    <div class="card-header text-white bg-primary rounded-2">
+                        <h4>My Recipes!<h4>
+                    </div>
+                    <div class="card-body border border-2 border-primary rounded-2">
+                        <table class="table table-hover table-responsive" th:if="${not recipes.isEmpty()}">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Preparation time</th>
+                                    <th scope="col">Servings</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:remove="all">
+                                    <td th:text="${recipe.id}">123</td>
+                                    <td th:text="${recipe.description}">Recipe title 1</td>
+                                    <td th:text="${recipe.prepTime}">20</td>
+                                    <td th:text="${recipe.servings}">2</td>
+                                </tr>
+                                <tr th:remove="all">
+                                    <td th:text="${recipe.id}">124</td>
+                                    <td th:text="${recipe.description}">Recipe title 2</td>
+                                    <td th:text="${recipe.prepTime}">45</td>
+                                    <td th:text="${recipe.servings}">4</td>
+                                </tr>
+
+                                <tr th:each="recipe : ${recipes}">
+                                    <td th:text="${recipe.id}">125</td>
+                                    <td th:text="${recipe.description}">Recipe title 3</td>
+                                    <td th:text="${recipe.prepTime}">50</td>
+                                    <td th:text="${recipe.servings}">5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </td>
+            </div>
+        </div>
+    </div>
 
-            <td>
-                <div th:each="ing : ${recipe.ingredients}">
-                    <p th:text="${ing.amount + ' ' + ing.uom.description + ' ' + ing.description}">Ingredients</p>
-                </div>
-            </td>
 
-            <td th:text="${recipe.directions}">Directions</td>
 
-            <td th:text="${recipe.notes.notes}">Notes</td>
-
-            <td th:text="${recipe.source}">Simply recipes</td>
-
-            <td th:text="${recipe.url}">www.something.com</td>
-        </tr>
-    </table>
 </body>
 </html>
