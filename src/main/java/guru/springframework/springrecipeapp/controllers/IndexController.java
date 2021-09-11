@@ -15,11 +15,9 @@ import java.util.Set;
 @Controller
 public class IndexController {
 
-    private final CategoryRepository categoryRepository;
     private final RecipeService recipeService;
 
-    public IndexController(CategoryRepository categoryRepository, RecipeService recipeService) {
-        this.categoryRepository = categoryRepository;
+    public IndexController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
 
