@@ -71,7 +71,7 @@ class IndexControllerTest {
         ArgumentCaptor<Set<Recipe>> argumentCaptor = ArgumentCaptor.forClass(Set.class);
 
         //when
-        String page = indexController.getRecipes(model);
+        String page = indexController.getIndexPage(model);
 
         //then
         assertEquals("recipes/recipes", page);

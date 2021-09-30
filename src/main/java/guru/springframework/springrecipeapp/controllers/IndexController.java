@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.HashSet;
-import java.util.Set;
 
 @Slf4j
 @Controller
@@ -21,23 +19,11 @@ public class IndexController {
         this.recipeService = recipeService;
     }
 
-
     @RequestMapping({"", "/", "/index"})
-    public String getIndexPage() {
-        /*Optional<Category> categoryOptional = categoryService.findByDescription("American");
-        Optional<UnitOfMeasure> unitOfMeasureOptional = .findByDescription("Teaspoon");
-        System.out.println("cat id is: " + categoryOptional.get().getId());
-        System.out.println("uom id is:" + unitOfMeasureOptional.get().getId());
-        */
+    public String getIndexPage(Model model) {
         log.debug("Getting index page");
+        model.addAttribute("recipes", recipeService.getRecipes());
         return "index";
     }
-
-    @RequestMapping({"/recipes"})
-    public String getRecipes(Model model) {
-        model.addAttribute("recipes", recipeService.getRecipes());
-        return "recipes/recipes";
-    }
-
 
 }

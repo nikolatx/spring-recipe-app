@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of recipes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/5.1.1/css/bootstrap.min.css}">
+</head>
+<body>
+
+
+    <div class="container-fluid" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card mb-6">
+                    <div class="card-header text-white bg-primary rounded-2">
+                        <h4 th:text="${recipe.description}">description}</h4>
+                    </div>
+                    <div class="card-body border border-2 border-primary rounded-2">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    Categories:
+                                </div>
+                                <div class="col">
+                                    <ul>
+                                        <li th:remove="all">Mexican</li>
+                                        <li th:remove="all">American</li>
+                                        <li th:each="cat : ${recipe.categories}" th:text="${cat.description}">Dinner</li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Prep time:
+                                </div>
+                                <div class="col">
+                                    <span th:text="${recipe.prepTime}+' min'">20</span>
+                                </div>
+                                <div class="col">
+                                    Difficulty:
+                                </div>
+                                <div class="col">
+                                    <span th:text="${recipe.difficulty}">Easy</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Cooktime:
+                                </div>
+                                <div class="col">
+                                    <span th:text="${recipe.cookTime}+' min'">10</span>
+                                </div>
+                                <div class="col">
+                                    Servings:
+                                </div>
+                                <div class="col">
+                                    <span th:text="${recipe.servings}">5</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Source:
+                                </div>
+                                <div class="col">
+                                    <span th:text="${recipe.source}">Source</span>
+                                </div>
+                                <div class="col">
+                                    URL:
+                                </div>
+                                <div class="col">
+                                    <span th:text="${recipe.url}">www.simply.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br/>
+                <div class="card mb-6">
+                    <div class="card-header text-white bg-primary rounded-2">
+                        <h4>Ingredients</h4>
+                    </div>
+                    <div class="card-body border border-2 border-primary rounded-2">
+                        <div class="container">
+                            <div class="row">
+                                <ul>
+                                    <li th:remove="all">1 Cup of milk</li>
+                                    <li th:remove="all">1 Cup of pepper</li>
+                                    <li th:each="ing : ${recipe.ingredients}">
+                                        <span th:text="${ing.amount}>0? ${ing.amount}+' '+${ing.uom.description}+' '+${ing.description} :
+                                            ${ing.uom.description}+' '+${ing.description}">1 Cup of sugar</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br/>
+                <div class="card mb-6">
+                    <div class="card-header text-white bg-primary rounded-2">
+                        <h4>Directions</h4>
+                    </div>
+                    <div class="card-body border border-2 border-primary rounded-2">
+                        <div class="container">
+                            <div class="row">
+                                <span th:text="${recipe.directions}">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt volutpat augue,
+                                vitae tristique risus pretium at. Sed varius, elit vitae finibus commodo, enim dolor
+                                gravida odio, sit amet imperdiet lorem dolor ac nisl. Morbi posuere tortor eget malesuada
+                                elementum. Nullam dolor est, gravida et risus vel, eleifend semper mi. Fusce eu vehicula lacus.
+                                Phasellus ut nisi porttitor, facilisis ex vitae, egestas nulla. Curabitur sit amet pellentesque
+                                orci. In rhoncus porta tellus, eu suscipit sapien semper id. Proin vitae gravida ante, vulputate
+                                efficitur mi. In tincidunt quam et urna mattis feugiat. Pellentesque vel purus vel nisl fermentum
+                                bibendum non eget nulla. Nulla tincidunt tortor sed tincidunt auctor. Cras porta lorem sapien.
+                                Suspendisse varius diam et neque iaculis, eget varius mauris malesuada. Aenean et ultricies nunc.
+                                Quisque consectetur, velit vitae eleifend porta, augue dolor auctor odio, quis tempor justo risus ut augue.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br/>
+                <div class="card mb-6">
+                    <div class="card-header text-white bg-primary rounded-2">
+                        <h4>Notes</h4>
+                    </div>
+                    <div class="card-body border border-2 border-primary rounded-2">
+                        <div class="container">
+                            <div class="row">
+                                <span th:text="${recipe.notes.notes}">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt volutpat augue,
+                                vitae tristique risus pretium at. Sed varius, elit vitae finibus commodo, enim dolor
+                                gravida odio, sit amet imperdiet lorem dolor ac nisl. Morbi posuere tortor eget malesuada
+                                elementum. Nullam dolor est, gravida et risus vel, eleifend semper mi. Fusce eu vehicula lacus.
+                                Phasellus ut nisi porttitor, facilisis ex vitae, egestas nulla. Curabitur sit amet pellentesque
+                                orci. In rhoncus porta tellus, eu suscipit sapien semper id. Proin vitae gravida ante, vulputate
+                                efficitur mi. In tincidunt quam et urna mattis feugiat. Pellentesque vel purus vel nisl fermentum
+                                bibendum non eget nulla. Nulla tincidunt tortor sed tincidunt auctor. Cras porta lorem sapien.
+                                Suspendisse varius diam et neque iaculis, eget varius mauris malesuada. Aenean et ultricies nunc.
+                                Quisque consectetur, velit vitae eleifend porta, augue dolor auctor odio, quis tempor justo risus ut augue.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+            crossorigin="anonymous"></script>
+</body>
+</html>
