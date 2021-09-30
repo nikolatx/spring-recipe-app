@@ -74,7 +74,7 @@ class IndexControllerTest {
         String page = indexController.getIndexPage(model);
 
         //then
-        assertEquals("recipes/recipes", page);
+        assertEquals("index", page);
         verify(recipeService, times(1)).getRecipes();
         verify(model, times(1)).addAttribute(eq("recipes"), argumentCaptor.capture());
         Set<Recipe> setInController = argumentCaptor.getValue();
