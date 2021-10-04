@@ -90,10 +90,8 @@
                                 <ul>
                                     <li th:remove="all">1 Cup of milk</li>
                                     <li th:remove="all">1 Cup of pepper</li>
-                                    <li th:each="ing : ${recipe.ingredients}">
-                                        <span th:text="${ing.amount}>0? ${ing.amount}+' '+${ing.uom.description}+' '+${ing.description} :
-                                            ${ing.uom.description}+' '+${ing.description}">1 Cup of sugar</span>
-                                    </li>
+                                    <li th:each="ing : ${recipe.ingredients}"
+                                        th:text="${ing.getAmount() +' '+ ing.uom.getDescription() +' '+ ing.getDescription()}">1 Cup of sugar</li>
                                 </ul>
                             </div>
                         </div>
