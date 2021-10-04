@@ -11,7 +11,9 @@
     <div class="container-fluid" style="margin-top: 20px">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <form th:object="${recipe}" th:action="#{/recipe/}" method="post">
+
+                <form th:object="${recipe}" th:action="@{/recipe/}" method="post">
+
                     <input type="hidden" th:field="*{id}"/>
                     <div class="card mb-6">
                         <div class="card-header text-white bg-primary rounded-2">
@@ -19,7 +21,7 @@
                         </div>
                         <div class="card-body border border-2 border-primary rounded-2">
                             <div class="row">
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-6 form-group">
                                     <label>Recipe Description:</label>
                                     <input type="text" class="form-control" th:field="*{description}">
                                 </div>
@@ -41,7 +43,6 @@
                                             Cat 2
                                         </label>
                                     </div>
-
                                 </div>
                             </div>
 
@@ -84,11 +85,11 @@
                     <div class="card mb-6">
                         <div class="card-header text-white bg-primary rounded-2">
                             <div class="row">
-                                <div class="col-md-11 form-group">
+                                <div class="col-md-10 form-group">
                                     <h5>Ingredients</h5>
                                 </div>
-                                <div class="col-md-1 form-group">
-                                    <a class="btn btn-secondary" href="#" type="button">Edit</a>
+                                <div class="col-md-2 form-group">
+                                    <a class="btn btn-light" href="#" type="button">Edit</a>
                                 </div>
                             </div>
                         </div>
