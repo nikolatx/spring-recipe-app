@@ -2,6 +2,7 @@ package guru.springframework.springrecipeapp.controllers;
 
 import guru.springframework.springrecipeapp.commands.RecipeCommand;
 import guru.springframework.springrecipeapp.domain.Recipe;
+import guru.springframework.springrecipeapp.repositories.RecipeRepository;
 import guru.springframework.springrecipeapp.services.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ import java.awt.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -87,5 +88,14 @@ class RecipeControllerTest {
                 .andExpect(view().name("recipe/recipeform"))
                 .andExpect(model().attributeExists("recipe"));
     }
+
+    @Test
+    public void testDelete() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/1/delete"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/"));
+        verify(recipeService, times(1)).deleteById(anyLong());
+    }
+
 
 }
