@@ -46,7 +46,7 @@
 
                             <tr th:each="ing : ${recipe.getIngredients()}">
                                 <td th:text="${ing.getId()}">125</td>
-                                <td th:text="${ing.amount}+' '+${ing.uom.description}+' '+${ing.description}+'/show'">12 Cups of salt</td>
+                                <td th:text="${ing.amount}+' '+${ing.uom.description}+' '+${ing.description}">12 Cups of salt</td>
                                 <td><a href="#" th:href="@{'/recipe/'+${recipe.id}+'/ingredient/'+${ing.id}+'/show'}">View</a></td>
                                 <td><a href="#" th:href="@{'/recipe/'+${recipe.id}+'/ingredient/'+${ing.id}+'/update'}">Update</a></td>
                                 <td><a href="#" th:href="@{'/recipe/'+${recipe.id}+'/ingredient/'+${ing.id}+'/delete'}">Delete</a></td>
