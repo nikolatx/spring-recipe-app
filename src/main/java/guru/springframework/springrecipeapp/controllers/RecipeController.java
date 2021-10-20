@@ -48,7 +48,7 @@ public class RecipeController {
     public String delete(@PathVariable String id, Model model) {
         log.debug("Deleting id: "+id);
         recipeService.deleteById(Long.valueOf(id));
-        return "redirect:/";
+        return "redirect:/recipe/"+id+"/ingredients";
     }
 
 }
