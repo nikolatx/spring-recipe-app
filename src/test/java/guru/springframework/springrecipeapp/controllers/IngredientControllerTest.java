@@ -26,8 +26,7 @@ import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -113,4 +112,22 @@ class IngredientControllerTest {
                 .andExpect(view().name("redirect:/recipe/2/ingredient/3/show"));
 
     }
+
+    @Test
+    public void testAddNewIngredient() throws Exception {
+        RecipeCommand recipeCommand = new RecipeCommand();
+        recipeCommand.setId(2L);
+        IngredientCommand command = new IngredientCommand();
+        command.setRecipeId(2L);
+
+        when(recipeService.findCommandById(anyLong())).thenReturn(recipeCommand);
+        when(uomService.listAllUoms()).thenReturn(new HashSet<>());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/2/ingredient/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("recipe/ingredient/new"))
+                .andExpect(model().attributeExists("ingredient"));
+        verify(recipeService, times(1)).findCommandById(anyLong());
+    }
+
 }

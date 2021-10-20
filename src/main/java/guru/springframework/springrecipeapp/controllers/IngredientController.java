@@ -1,6 +1,7 @@
 package guru.springframework.springrecipeapp.controllers;
 
 import guru.springframework.springrecipeapp.commands.IngredientCommand;
+import guru.springframework.springrecipeapp.commands.UnitOfMeasureCommand;
 import guru.springframework.springrecipeapp.services.IngredientService;
 import guru.springframework.springrecipeapp.services.RecipeService;
 import guru.springframework.springrecipeapp.services.UomService;
@@ -53,6 +54,17 @@ public class IngredientController {
     public String saveOrUpdate(@ModelAttribute IngredientCommand command) {
         IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
         return "redirect:/recipe/"+savedCommand.getRecipeId()+"/ingredient/"+savedCommand.getId()+"/show";
+    }
+
+    @RequestMapping("/recipe/{recipeId}/ingredient/new")
+    public String addIngredient(@PathVariable String recipeId, Model model) {
+        IngredientCommand command = new IngredientCommand();
+        command.setRecipeId(recipeService.findCommandById(Long.valueOf(recipeId)).getId());
+        //todo raise exception if null
+        command.setUom(new UnitOfMeasureCommand());
+        model.addAttribute("ingredient", command);
+        model.addAttribute("uomList", uomService.listAllUoms());
+        return "recipe/ingredient/new";
     }
 
 }
