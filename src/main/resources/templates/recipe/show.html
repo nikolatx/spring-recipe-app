@@ -15,7 +15,14 @@
             <div class="col-md-6 offset-md-3">
                 <div class="card mb-6">
                     <div class="card-header text-white bg-primary rounded-2">
-                        <h4 th:text="${recipe.description}">description}</h4>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4 th:text="${recipe.description}">description}</h4>
+                            </div>
+                            <div class="col-md-8">
+                                <a class="btn btn-light" href="#" th:href="@{'/recipe/'+${recipe.id}+'/image'}" role="button">Change image</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body border border-2 border-primary rounded-2">
                         <div class="container">
@@ -30,7 +37,11 @@
                                         <li th:each="cat : ${recipe.categories}" th:text="${cat.description}">Dinner</li>
                                     </ul>
                                 </div>
-
+                                <div class="col-md-6">
+                                    <img src="../../static/images/guacamole400x400WithX.jpg"
+                                         th:src="@{'/recipe/' + ${recipe.id} + '/recipeimage'}"
+                                         width="200" height="200"/>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col">
