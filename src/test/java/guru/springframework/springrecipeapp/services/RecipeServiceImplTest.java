@@ -3,6 +3,7 @@ package guru.springframework.springrecipeapp.services;
 import guru.springframework.springrecipeapp.converters.RecipeCommandToRecipe;
 import guru.springframework.springrecipeapp.converters.RecipeToRecipeCommand;
 import guru.springframework.springrecipeapp.domain.Recipe;
+import guru.springframework.springrecipeapp.exceptions.NotFoundException;
 import guru.springframework.springrecipeapp.repositories.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -65,5 +66,19 @@ class RecipeServiceImplTest {
         recipeService.deleteById(recipeIdToDelete);
         verify(recipeRepository).deleteById(anyLong());
     }
+
+    @Test
+    public void getRecipeByIdTestNotFound() throws Exception {
+        Exception exception = assertThrows(NotFoundException.class, ()->{
+            Optional<Recipe> recipeOptional = Optional.empty();
+            when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+            Recipe recipeReturned = recipeService.findById(1L);
+
+            //exception
+
+        });
+    }
+
+
 
 }
