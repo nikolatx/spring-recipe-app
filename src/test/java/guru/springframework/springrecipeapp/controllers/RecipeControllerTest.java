@@ -31,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class RecipeControllerTest {
 
+    public static final String RECIPE_RECIPEFORM_URL = "recipe/recipeform";
     @Mock
     RecipeService recipeService;
 
@@ -81,7 +82,7 @@ class RecipeControllerTest {
         RecipeCommand command = new RecipeCommand();
         mockMvc.perform(MockMvcRequestBuilders.get("/recipe/new"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/recipeform"))
+                .andExpect(view().name(RECIPE_RECIPEFORM_URL))
                 .andExpect(model().attributeExists("recipe"));
     }
 
@@ -91,9 +92,26 @@ class RecipeControllerTest {
         command.setId(2l);
         when(recipeService.saveRecipeCommand(any())).thenReturn(command);
         mockMvc.perform(MockMvcRequestBuilders.post("/recipe")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED))
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("id", "")
+                        .param("description", "some string")
+                        .param("directions", "some directions"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/2/show"));
+    }
+
+    @Test
+    void postNewRecipeFormValidationFailed() throws Exception {
+        RecipeCommand command = new RecipeCommand();
+        command.setId(2L);
+        lenient().when(recipeService.saveRecipeCommand(any())).thenReturn(command);
+        mockMvc.perform(MockMvcRequestBuilders.post("/recipe")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("id", "")
+                        )
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("recipe"))
+                .andExpect(view().name(RECIPE_RECIPEFORM_URL));
     }
 
     @Test
@@ -103,7 +121,7 @@ class RecipeControllerTest {
         when(recipeService.findCommandById(anyLong())).thenReturn(command);
         mockMvc.perform(MockMvcRequestBuilders.get("/recipe/1/update"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/recipeform"))
+                .andExpect(view().name(RECIPE_RECIPEFORM_URL))
                 .andExpect(model().attributeExists("recipe"));
     }
 
