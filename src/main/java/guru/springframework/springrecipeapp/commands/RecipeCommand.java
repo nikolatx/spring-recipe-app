@@ -28,13 +28,15 @@ public class RecipeCommand {
     @Max(999)
     private Integer prepTime;
 
-    @Min(1)
+    @Min(0)
     @Max(999)
     private Integer cookTime;
 
     @Min(1)
     @Max(100)
     private Integer servings;
+
+    @Size(min=3, max=255)
     private String source;
 
     @URL

@@ -3,7 +3,6 @@ package guru.springframework.springrecipeapp.controllers;
 import guru.springframework.springrecipeapp.commands.RecipeCommand;
 import guru.springframework.springrecipeapp.domain.Recipe;
 import guru.springframework.springrecipeapp.exceptions.NotFoundException;
-import guru.springframework.springrecipeapp.repositories.RecipeRepository;
 import guru.springframework.springrecipeapp.services.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.awt.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
