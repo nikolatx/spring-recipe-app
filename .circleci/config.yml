@@ -18,28 +18,21 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
-
-      -restore_cache:
-        keys:
-          - v1-dependencies-{{ checksum "pom.xml" }}
-          - v1-dependencies-
-
       # Use mvn clean and package as the standard maven build phase
-      - run: mvn dependency:go-offline
+      - run:
+          name: Build
+          command: mvn -B -DskipTests clean package
 
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
 
       - run: mvn integration-test cobertura:cobertura
 
-      - store_test_results:
-          path: target/surefire-reports
+          - store_test_results:
+              path: target/surefire-reports
 
-      - run:
-          name: Send to CodeCov
-          command: bash <(curl -s https://codecov.io/bash)
+          - run:
+              name: Send to CodeCov
+              command: bash <(curl -s https://codecov.io/bash)
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
