@@ -24,11 +24,8 @@ jobs:
           command: mvn -B -DskipTests clean package
 
 
-      - run: mvn integration-test cobertura:cobertura
+      - run: mvn integration-test
 
-      - run:
-          name: Send to CodeCov
-          command: bash <(curl -s https://codecov.io/bash)
 
 
 # Invoke jobs via workflows
