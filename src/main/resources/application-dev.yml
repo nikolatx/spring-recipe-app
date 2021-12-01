@@ -9,11 +9,19 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: mysql
     show-sql: true
-    properties:
-      javax:
-        persistance:
-          schema-generation:
-            create-source: metadata
-            scripts:
-              action: create
-              create-target: guru_database_create.sql
+
+# uncomment next lines to let Spring automatically create sql script for database creation (guru_database_create.sql)
+# this is used to copy/paste into mysql workbench to create tables, because our users don't have grants for that
+#    properties:
+#      hibernate:
+#        hbm2ddl:
+#          delimiter: ";"
+#      javax:
+#        persistence:
+#          schema-generation:
+#            create-source: metadata
+#            scripts:
+#              action: create
+#              create-target: guru_database_create.sql
+#
+
