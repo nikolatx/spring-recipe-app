@@ -3,12 +3,16 @@ spring:
     url: jdbc:mysql://localhost:3306/sfg_dev
     username: sfg_dev_user
     password: guru
+  sql:
+    init:
+      platform: mysql
   jpa:
     hibernate:
       ddl-auto: validate
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: mysql
     show-sql: true
+
 
 # uncomment next lines to let Spring automatically create sql script for database creation (guru_database_create.sql)
 # this is used to copy/paste into mysql workbench to create tables, because our users don't have grants for that
